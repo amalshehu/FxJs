@@ -11,34 +11,11 @@
     "moduleFileExtensions": [
       "js",
       "json",
-      "jsx",
       "node",
       "mjs"
     ],
     "transform": {
       "^.+.m?js$": "babel-jest"
-    }
-  },
-  "babel": {
-    "env": {
-      "test": {
-        "presets": [
-          [
-            "es2015",
-            {
-              "modules": false
-            }
-          ]
-        ],
-        "plugins": [
-          [
-            "transform-es2015-modules-commonjs",
-            {
-              "spec": true
-            }
-          ]
-        ]
-      }
     }
   },
   "scripts": {
