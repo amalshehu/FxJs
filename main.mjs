@@ -1,7 +1,7 @@
 import EventEmitter from 'eventemitter3'
 import uuid from 'uuid'
 
-export class Fx {
+export class FxBuilder {
   constructor(config, eventEmitter) {
     this.id = uuid.v1()
     this.config = config
@@ -13,13 +13,17 @@ export class Fx {
   }
 
   next(signal) {
-    this.onPerceive(signal)
+    setImmediate(() => {
+      this.onPerceive(signal)
+    })
     return this
   }
 
   send(signal) {
     this.observers.forEach(fn => fn(signal))
-    this.emitter.emit(`propagated-event ${this.id}`, signal)
+    setImmediate(() => {
+      this.emitter.emit(`propagated-event ${this.id}`, signal)
+    })
     return this
   }
 
@@ -33,5 +37,19 @@ export class Fx {
       node.next(signal)
     })
     return node
+  }
+}
+
+export class ArrayStream extends FxBuilder {
+  constructor(options, eventemitter) {
+    super(options, eventemitter)
+    this.stream = options
+    this.stream.forEach(val => this.send(val))
+  }
+}
+export default {
+  FxBuilder,
+  array: array => {
+    return new ArrayStream(array)
   }
 }
