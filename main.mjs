@@ -26,4 +26,10 @@ export class Fx {
     this.observers.push(observer)
     return this
   }
+  to(node) {
+    this.emitter.on(`propagated-event ${this.id}`, signal => {
+      node.push(signal)
+    })
+    return node
+  }
 }
