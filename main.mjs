@@ -1,5 +1,5 @@
 import EventEmitter from 'eventemitter3'
-import uuid from 'node-uuid'
+import uuid from 'uuid'
 
 export class Fx {
   constructor(config, eventEmitter) {
