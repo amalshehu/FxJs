@@ -1,0 +1,19 @@
+{
+  "name": "fxjs",
+  "version": "1.0.0",
+  "description": "Reactive programming library for javascript.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amalshehu/FxJs.git"
+  },
+  "author": "Amal Ahehu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/amalshehu/FxJs/issues"
+  },
+  "homepage": "https://github.com/amalshehu/FxJs#readme"
+}
