@@ -1,8 +1,8 @@
 import { Fx } from '../main.mjs'
 
 class FxNode extends Fx {
-  onCOllect(signal) {
-    test('Signal should be collected by onCOllect Method', () => {
+  onPerceive(signal) {
+    test('Signal should be collected by onPerceive Method', () => {
       expect(signal).toBeTruthy()
     })
     this.send(signal * 2)
@@ -16,4 +16,26 @@ fx.observe(signal => {
   })
 })
 
-fx.push(1)
+fx.next(1)
+
+class Square extends Fx {
+  onPerceive(value) {
+    this.send(value ** 2)
+  }
+}
+
+class Write extends Fx {
+  onPerceive(value) {
+    test(`Take down-stream node as arg then square and pipe: ${value} `, () => {
+      expect(value).toBeTruthy()
+    })
+  }
+}
+
+const square = new Square()
+const write = new Write()
+square.tube(write)
+square
+  .next(5)
+  .next(10)
+  .next(15)
