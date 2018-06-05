@@ -8,12 +8,12 @@ export class Fx {
     this.observers = []
     this.emitter = eventEmitter ? eventEmitter : new EventEmitter()
   }
-  onCOllect(signal) {
+  onPerceive(signal) {
     return this
   }
 
-  push(signal) {
-    this.onCOllect(signal)
+  next(signal) {
+    this.onPerceive(signal)
     return this
   }
 
@@ -22,13 +22,15 @@ export class Fx {
     this.emitter.emit(`propagated-event ${this.id}`, signal)
     return this
   }
+
   observe(observer) {
     this.observers.push(observer)
     return this
   }
-  to(node) {
+
+  tube(node) {
     this.emitter.on(`propagated-event ${this.id}`, signal => {
-      node.push(signal)
+      node.next(signal)
     })
     return node
   }
