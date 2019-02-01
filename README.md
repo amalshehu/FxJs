@@ -1,2 +1,2 @@
 # FxJs
- A customizable reactive programming library for JavaScript.
+A customizable reactive programming library for JavaScript.
